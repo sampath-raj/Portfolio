@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Root Variables ──────────────────────────────────── */
+:root {
+  --bg-primary:    #0a0a0f;
+  --bg-secondary:  #0f0f18;
+  --bg-tertiary:   #14141f;
+  --bg-card:       rgba(255,255,255,0.03);
+
+  --accent:        #4f9eff;
+  --accent-dim:    rgba(79,158,255,0.15);
+  --accent-border: rgba(79,158,255,0.25);
+
+  --text-primary:  #e8eaf0;
+  --text-secondary:#8892a4;
+  --text-muted:    #545d6e;
+
+  --border:        rgba(255,255,255,0.07);
+  --border-hover:  rgba(255,255,255,0.14);
+
+  /* Project card colors — only used for per-project accents, not UI chrome */
+  --neon-cyan:   #00d4ff;
+  --neon-purple: #7b2fff;
+  --neon-pink:   #ff00c8;
+  --neon-green:  #00ff88;
+}
+
+.light-mode {
+  --bg-primary:    #f7f8fc;
+  --bg-secondary:  #eef0f7;
+  --bg-tertiary:   #e4e7f2;
+  --bg-card:       rgba(255,255,255,0.8);
+
+  --accent:        #2563eb;
+  --accent-dim:    rgba(37,99,235,0.1);
+  --accent-border: rgba(37,99,235,0.25);
+
+  --text-primary:  #111827;
+  --text-secondary:#4b5563;
+  --text-muted:    #9ca3af;
+
+  --border:        rgba(0,0,0,0.07);
+  --border-hover:  rgba(0,0,0,0.15);
+}
+
+/* ─── Base Reset ──────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent-border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── Card ────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.card:hover {
+  border-color: var(--border-hover);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Keep glass-card alias for backwards compat */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease;
+}
+.glass-card:hover {
+  border-color: var(--border-hover);
+}
+
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+/* ─── Accent Text ─────────────────────────────────────── */
+.accent-text {
+  color: var(--accent);
+}
+
+/* ─── Gradient Text — subtle, 2-color only ────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section Layout ──────────────────────────────────── */
+.section-padding {
+  padding: 96px 0;
+}
+
+/* ─── Section Header ──────────────────────────────────── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+/* ─── Divider ─────────────────────────────────────────── */
+.section-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* ─── Buttons ─────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-hover);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Keep old class names working */
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+.btn-solid:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-neon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-hover);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.btn-neon:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+/* ─── Skill Tag ───────────────────────────────────────── */
+.skill-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/* ─── Timeline ────────────────────────────────────────── */
+.timeline-line {
+  background: var(--border);
+}
+
+/* ─── Chatbot Bubbles ─────────────────────────────────── */
+.chat-bubble-user {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 16px 16px 4px 16px;
+}
+.chat-bubble-bot {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* ─── Loading bar ─────────────────────────────────────── */
+.loader-bar {
+  background: var(--accent);
+}
+
+/* ─── Command Palette ─────────────────────────────────── */
+.palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.palette-panel {
+  width: min(560px, 92vw);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-hover);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.palette-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+}
+.palette-input::placeholder { color: var(--text-muted); }
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.palette-item:hover,
+.palette-item.active {
+  background: var(--accent-dim);
+}
+.palette-item.active .palette-item-label {
+  color: var(--accent);
+}
+.palette-item-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.palette-item-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+.palette-item-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section-padding { padding: 64px 0; }
+}
+
+/* ─── Tilt card (projects) ────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.1s ease;
+}
