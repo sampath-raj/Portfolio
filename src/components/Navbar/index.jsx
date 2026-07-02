@@ -45,9 +45,12 @@ export default function Navbar({ darkMode, toggleDarkMode, onOpenPalette }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
         style={{
-          background: scrolled ? "rgba(10,10,15,0.9)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
+          background: scrolled
+            ? "rgba(8,11,20,0.88)"
+            : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
           borderBottom: scrolled ? "1px solid var(--border)" : "none",
+          boxShadow: scrolled ? "0 1px 0 rgba(255,255,255,0.04)" : "none",
         }}
       >
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -57,9 +60,13 @@ export default function Navbar({ darkMode, toggleDarkMode, onOpenPalette }) {
             <button
               onClick={() => scrollTo("#home")}
               className="font-display font-black text-lg tracking-tight transition-opacity hover:opacity-75"
-              style={{ color: "var(--text-primary)" }}
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
             >
-              SR<span style={{ color: "var(--accent)" }}>.</span>
+              SR<span style={{
+                background: "linear-gradient(135deg, #5b8dee, #818cf8)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>.</span>
             </button>
 
             {/* Desktop nav links */}

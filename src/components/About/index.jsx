@@ -100,7 +100,7 @@ export default function About() {
               {stats.map((s) => (
                 <div key={s.label} className="text-center">
                   <p
-                    className="font-display font-black text-2xl"
+                    className="stat-num font-display font-black text-2xl"
                     style={{ color: "var(--text-primary)" }}
                   >
                     {s.value}
@@ -126,8 +126,11 @@ export default function About() {
           >
             {/* Profile card */}
             <div
-              className="card p-6 flex items-center gap-5"
-              style={{ borderColor: "var(--accent-border)" }}
+              className="card p-6 flex items-center gap-5 mb-6"
+              style={{
+                borderColor: "var(--accent-border)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)",
+              }}
             >
               {/* Avatar — static, no spinning */}
               <div

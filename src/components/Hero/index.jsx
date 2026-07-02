@@ -46,6 +46,9 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
+      {/* Ambient gradient mesh */}
+      <div className="hero-mesh" />
+
       {/* Three.js Background */}
       <HeroCanvas />
 
@@ -84,10 +87,11 @@ export default function Hero() {
               style={{
                 fontSize: "clamp(3rem, 8vw, 5.5rem)",
                 color: "var(--text-primary)",
+                letterSpacing: "-0.03em",
               }}
             >
               Sampath<br />
-              <span style={{ color: "var(--accent)" }}>Raj.</span>
+              <span className="hero-name-gradient">Raj.</span>
             </motion.h1>
 
             {/* Typewriter role */}
@@ -187,7 +191,10 @@ export default function Hero() {
           >
             <div
               className="card p-8"
-              style={{ borderColor: "var(--accent-border)" }}
+              style={{
+                borderColor: "var(--accent-border)",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+              }}
             >
               {/* Quick stats row */}
               <div className="grid grid-cols-2 gap-px mb-6" style={{ background: "var(--border)" }}>
